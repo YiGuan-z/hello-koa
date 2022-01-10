@@ -39,7 +39,12 @@ const renderFile = async (filePath) => {
 const route = async (url) => {
 	let viewUrl = `/${url}`
 	let data = await render(viewUrl).catch(()=>{
-		return renderFile(viewUrl);
+		return renderFile(viewUrl).catch(()=>{
+			return {
+				code: 404,
+				msg: 'Not Found'
+			}
+		});
 	})
 	return data
 }
