@@ -2,9 +2,9 @@
   "name": "hello-koa",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/Server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/Server.js"
   },
   "keywords": [],
   "author": "",
@@ -12,6 +12,7 @@
   "dependencies": {
     "koa": "^2.13.4",
     "require.js": "^1.0.0",
-    "supertest": "^6.1.6"
+    "supertest": "^6.1.6",
+    "module": "^1.2.5"
   }
 }
