@@ -6,7 +6,7 @@ const app = new Koa();
  * @param page
  * @return {Promise<unknown>}
  */
-const render = async (page) => {
+const renderFileList = async (page) => {
 	return new Promise(((resolve, reject) => {
 		let viewUrl = `${page}`
 		fs.readdir(viewUrl, ((err, data) => {
@@ -38,7 +38,7 @@ const renderFile = async (filePath) => {
 
 const route = async (url) => {
 	let viewUrl = `/${url}`
-	let data = await render(viewUrl).catch(()=>{
+	let data = await renderFileList(viewUrl).catch(()=>{
 		return renderFile(viewUrl).catch(()=>{
 			return {
 				code: 404,
@@ -51,7 +51,12 @@ const route = async (url) => {
 
 app.use(async (ctx) => {
 	let url = ctx.request.url;
-	ctx.body = await route(url);
+	let fileList=await route(url);
+	ctx.body = {
+		code: 200,
+		msg: 'success',
+		data: fileList
+	}
 	ctx.set('Content-Type', 'application/json');
 	ctx.set('Access-Control-Allow-Origin', '*');
 	console.log(`[demo] koa was visited ip is ${ctx.request.ip} time:${new Date().toLocaleString()} browsed ${ctx.request.url}`);
