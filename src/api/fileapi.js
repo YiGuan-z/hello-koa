@@ -1,8 +1,9 @@
 const fs = require('fs');
 // const os=require('os');
 const shell = require('child_process');
-const {CreateMenu} = require('../rules/rules')
+const {CreateMenu} = require('../rules/rules');
 const menu = CreateMenu.getInstance();
+menu.isDeBug(false)
 /**
  * 异步读取文件夹，使用Promise封装
  * @param page

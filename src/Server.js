@@ -1,8 +1,8 @@
 const Koa = require('koa');
 const app = new Koa();
 const {route} = require("./api/fileapi");
-const {CreateMenu}=require('./rules/rules');
-const menu=CreateMenu.getInstance()
+const {CreateMenu} = require('./rules/rules');
+const menu = CreateMenu.getInstance()
 
 //Start Application ...
 app.use(async (ctx) => {
@@ -16,7 +16,7 @@ app.use(async (ctx) => {
 			code: 404,
 			msg: 'Not Found'
 		}
-	}else {
+	} else {
 		// ctx.body=menu.Success(fileList);
 		ctx.body = {
 			code: 200,
